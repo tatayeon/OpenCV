@@ -1,6 +1,9 @@
 import cv2 as cv 
 import numpy as np
 
+# GrabCut
+# 붓으로 짜르는것 우리가 직접 정한다.
+
 img=cv.imread('soccer.jpg')	# 영상 읽기
 img_show=np.copy(img)		# 붓 칠을 디스플레이할 목적의 영상
 

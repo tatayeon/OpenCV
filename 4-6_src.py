@@ -5,7 +5,12 @@ import time
 
 coffee=skimage.data.coffee()
 
-# 영역 분할 - normalized cut
+# 영역 분할 - normalized cut (정규화 절단)
+# 영역이 자잘하게 분할하는 경향이 있다.
+# 노드랑 그래프컷 알고리즘을 연달아 적용 (합칠지 쪼갤지) 중심에 대해서 계산한다.
+
+
+
 start = time.time()
 slic = skimage.segmentation.slic(coffee, compactness=20, n_segments=200, start_label=1)
 
