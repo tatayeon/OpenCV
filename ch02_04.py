@@ -37,7 +37,7 @@ cv.destroyAllWindows()
 if len(frames)>0:
     imgs = frames[0]
     for i in range(1, min(3, len(frames))):
-        imgs = np.hstack((imgs, frames[i]))  #hstack 함수 잘 보기
+        imgs = np.hstack((imgs, frames[i]))  #hstack 함수 잘 보기 hstack은 사진을 옆으로 붙이는거
     
     cv.imshow('collected images', imgs)
     

@@ -9,9 +9,14 @@ gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY) #엣지는 그레이 영상에 적용
 grad_x = cv.Sobel(gray, cv.CV_32F, 1, 0, ksize=3) #x와 y를 나눠서 해주는 것은 필터가 나눠져 있기 때문에
 grad_y = cv.Sobel(gray, cv.CV_32F, 0, 1, ksize=3) #cv.Sobel을 사용해서 넣어주면 된다.
 
+#cv.CV_8U(numpy의 uint8)로 변환
+#0보다 작으면 0, 255보다 크면 255로 바꿈
 sobel_x = cv.convertScaleAbs(grad_x) #절댓값을 취해 양수 영상으로 변환 + numpy의 uint8로 변환 0보다 작으면 0으로 255보다 크면 255로 바꿔
 sobel_y = cv.convertScaleAbs(grad_x)
 
+#addWeighted(i1,a,i2,b,c)는 i1*a+i2*b+c를 계산
+#i1과 i2가 같은 데이터 형이면 결과는 같은 데이터 형, 다르면 오류 발생
+#i1과 i2가 CV_8U인데 계산 결과가 255를 넘으면 255를 기록
 edge_strength=cv.addWeighted(sobel_x,0.5,sobel_y,0.5,0)	# 에지 강도 계산
 
 cv.imshow('Original',gray)

@@ -7,7 +7,8 @@ Created on Fri Oct 11 20:00:24 2024
 """
 
 #모폴리지 $ 연결 요소 예시
-
+# 모폴로지 연결요소로 4연결성, 8연결성등 여러가지 커널의 형태로 만들어서 
+# 연결하거나 끊어낼 수 있는 알고리즘이다. 아래의 4가지 형태는 기억해두자 팽창, 침식, 열림, 닫힘
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
