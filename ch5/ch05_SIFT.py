@@ -18,9 +18,12 @@ gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 sift = cv.SIFT_create()
 
 # 키포인트와 기술자 계산
+#kp는 특징점의 좌표
+# des는 그에 해당하는 128개의 그런 기술자
 kp, des = sift.detectAndCompute(gray, None)
 
 # 키포인트를 그레이스케일 이미지 위에 그림
+#flags 어떻식으로 보여줄 지 결정
 gray = cv.drawKeypoints(gray, kp, None, flags=cv.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
 # 결과 이미지 표시

@@ -20,8 +20,9 @@ if img is None:
 if img.shape[2] < 4:
     raise ValueError("Image does not have an alpha channel.")
 
-# 이진화 처리
+# 이진화 처리 이미지를 오츄알고리즘을 이용해서 이진화를 진행함
 t, bin_img = cv.threshold(img[:, :, 3], 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+print("여기서의 임계치 값", t) # 125나오네
 plt.imshow(bin_img, cmap="gray"), plt.xticks([]), plt.yticks([])
 plt.show()
 
@@ -38,14 +39,17 @@ se = np.uint8([[0, 0, 1, 0, 0],
                [0, 1, 1, 1, 0],
                [0, 0, 1, 0, 0]])
 
-# 팽창
-#팽창은 한개라도 참으면 모두 그것을 바꾸는 과정
+# 팽창 dilate
+# 팽창은 한개라도 참으면 모두 그것을 바꾸는 과정
+# 팽창은 작은 홈을 메우거나 끊어진 영역을 연결하는 효과가
+# iterations 이거는 반복 횟수 지정
 b_dilation = cv.dilate(b, se, iterations=1)
 plt.imshow(b_dilation, cmap="gray"), plt.xticks([]), plt.yticks([])
 plt.show()
 
-# 침식
+# 침식 erode
 # 침식은 한개라도 아니면 모두 거짓으로 바꾸는것
+#경계에 솟은 돌출 부분을 깎는 효과 영역을 작게 
 b_erosion = cv.erode(b, se, iterations=1)
 plt.imshow(b_erosion, cmap="gray"), plt.xticks([]), plt.yticks([])
 plt.show()

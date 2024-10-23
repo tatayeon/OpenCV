@@ -2,7 +2,7 @@ import cv2 as cv
 
 img=cv.imread('apples.jpg')
 gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)
-
+#허프라고해도 캐니로 먼저 엣지를 추출해야한다.
 edges = cv.Canny(gray, 150,200)
 
 
@@ -13,7 +13,12 @@ edges = cv.Canny(gray, 150,200)
 #허프변환은 함수로 유독 많이 겹치는걸 찾는거?
 
 
+#HoughCircles 함수 사용
 apples = cv.HoughCircles(gray, cv.HOUGH_GRADIENT, 1, 200, param1=150, param2=20, minRadius=50, maxRadius=120)
+# cv.HOUGH_GRADIENT: 경사도(Gradient)를 기반으로 원을 탐지하는 방법을 사용합니다.
+# param1=150: Canny 에지 검출기의 상한값입니다. 이 값은 경계선을 찾는 데 사용됩니다.
+# param2=20: 원 검출 임계값입니다. 이 값이 작을수록 더 많은 원이 검출되지만 정확도는 낮아집니다.
+
 
 for i in apples[0]:
     cv.circle(img, (int(i[0]),int(i[1])), (int(i[2])) ,(255, 0, 0), 2) #중심좌표 두개와 반지름 한개를 가지고 한다. 라인두께 2

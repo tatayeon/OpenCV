@@ -11,7 +11,8 @@ gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)
 # 사람은 물체의 3차원 모델과 겉모슴 모델 appearance model을 사용하여 의미적으로 검출한다.
 
 canny1=cv.Canny(gray, 50, 150) # -> 이게 좀 더 많이 찾아낸다 (Tlow=50, Thigh=150설정)
-canny2=cv.Canny(gray, 100, 200)
+#50보다 낮으면 취급 안한다, 150보다 높으면 무조건 맞는걸로 엣지를 추출한다.
+canny2=cv.Canny(gray, 100, 200) # 여기가 거짓 긍정을 줄이기 위해서 두개의 이력 임계값을 사용한다 부분이다.
 
 
 cv.imshow('Original',gray)

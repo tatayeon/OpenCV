@@ -6,6 +6,13 @@ Created on Wed Oct 16 01:52:54 2024
 @author: imtaeyeon
 """
 
+#FLANN 실습 매칭알고리즘이다 
+
+#1. 입력 영상으로 부터 다중 스케일 영상을 구성한다.
+#2. 적절한 미분연산을 적용하여 다중 스케일 영상을 구한다
+#3. 그 다음 극점 즉 튀는 부분을 특징점으로 잡아낸다.
+
+
 import cv2 as cv
 import numpy as np
 import time
@@ -34,10 +41,12 @@ start = time.time()
 flann_matcher = cv.DescriptorMatcher_create(cv.DescriptorMatcher_FLANNBASED)
 
 # KNN 매칭 수행 (가장 가까운 2개의 매칭)
+#위에서 찾은 2개로 이제 맞는 매칭을 시킨다.
 knn_match = flann_matcher.knnMatch(des1, des2, 2)
 
 # 최근접 이웃 거리 비율 적용
 # 좋은 매칭을 저장할 리스트
+#우리가 찾은 매칭중에서 비율을 구해서 T보다 작은것만 찾는 알고리즘을 쓴다 왜냐 그냥 knn보다 정확도가 더 높다.
 T = 0.7  # 매칭 기준 비율 설정
 good_match = []
 for nearest1, nearest2 in knn_match:

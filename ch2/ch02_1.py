@@ -11,12 +11,12 @@ import cv2 as cv
 import sys
 import numpy as np
 
-img = cv.imread('soccer.jpg')
+img = cv.imread('soccer.jpg') #주요함수 imread("파일명") 자신이 원하는 사진을 불러온다.
 
 if img is None:
     sys.exit('파일을 찾을 수 없습니다.');
     
-cv.imshow('Image Display', img)
+cv.imshow('Image Display', img) #imshow 이미지를 띄울 때 어떤 이름으로 띄울 것인지 무슨 이미지를 띄울지 적어준다.
 
 cv.waitKey()
 cv.destroyAllWindows()
