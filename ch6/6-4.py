@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 from PyQt5.QtWidgets import *
 import sys
-import winsound
+import subprocess
 
 class TrafficWeak(QMainWindow):
     def __init__(self):

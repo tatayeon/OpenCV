@@ -12,13 +12,11 @@ import numpy as np
 # 이미지 불러오기
 img = cv.imread('coin_array.jpg')
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-
 t, bin_img = cv.threshold(gray, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
 
 edges = cv.Canny(gray, 150, 200)
 
-huf = cv.HoughCircles(edges, cv.HOUGH_GRADIENT, dp=1, minDist=180, param1=80, param2=18, minRadius=60, maxRadius=120)
+huf = cv.HoughCircles(bin_img, cv.HOUGH_GRADIENT, dp=1, minDist=180, param1=80, param2=18, minRadius=60, maxRadius=120)
 
 total_money = 0
 
